@@ -1,0 +1,7 @@
+# Raw and processed GIS data (too large for GitHub)
+raw_data/
+data/
+
+# OS files
+.DS_Store
+Thumbs.db
