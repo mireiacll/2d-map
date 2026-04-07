@@ -10,6 +10,7 @@ export class RasterLayers {
                 url: GEOSERVER_URL,
                 params:{
                     LAYERS:'korea_map:dem_5186_opt',
+                    STYLES: 'dem_style',
                     TILED:true,
                 },
                 servertype:'geoserver',

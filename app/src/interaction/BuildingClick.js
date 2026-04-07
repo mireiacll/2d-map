@@ -21,8 +21,6 @@ export class BuildingClick{
 
         if (features.length>0){
             this.infoPanel.showBuilding(features[0]);
-        } else {
-            this.infoPanel.showPlaceholder();
-        }
+        } 
     }
 }

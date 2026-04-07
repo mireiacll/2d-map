@@ -6,6 +6,8 @@ import { ContourLayer } from './layers/ContourLayer.js';
 import { LayerPanel } from './ui/LayerPanel.js';
 import { InfoPanel } from './ui/InfoPanel.js';
 import { BuildingClick } from './interaction/BuildingClick.js';
+import { ElevationClick } from './interaction/ElevationClick.js';
+import { Legend } from './ui/Legend.js';
 
 const baseLayers = new BaseLayers();
 const rasterLayers = new RasterLayers();
@@ -35,3 +37,11 @@ new BuildingClick(
   buildingLayer,
   infoPanel
 );
+
+new ElevationClick(
+  mapManager.getMap(),
+  infoPanel,
+  buildingLayer
+);
+
+new Legend('legend');
