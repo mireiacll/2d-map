@@ -1,4 +1,7 @@
-const GEOSERVER_URL = '/geoserver/korea_map/wms';
+//const GEOSERVER_URL = '/geoserver/korea_map/wms';
+import { GEOSERVER_BASE } from '../config.js';
+// replace /geoserver/korea_map/wms with:
+const url = `${GEOSERVER_BASE}/korea_map/wms?...`
 
 export class ElevationClick {
   constructor(map, infoPanel, buildingLayer) {
@@ -24,15 +27,15 @@ export class ElevationClick {
     const projection = view.getProjection();
     const coordinate = event.coordinate;
 
-    const url = `/geoserver/korea_map/wms?` +
-      `SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo` +
-      `&LAYERS=korea_map:dem_5186_opt` +
-      `&QUERY_LAYERS=korea_map:dem_5186_opt` +
-      `&INFO_FORMAT=application/json` +
-      `&FEATURE_COUNT=1` +
-      `&X=50&Y=50&WIDTH=101&HEIGHT=101` +
-      `&SRS=EPSG:3857` +
-      `&BBOX=${this._getBbox(coordinate, viewResolution)}`;
+    const url = `${GEOSERVER_BASE}/korea_map/wms?` +
+  `SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo` +
+  `&LAYERS=korea_map:dem_5186_opt` +
+  `&QUERY_LAYERS=korea_map:dem_5186_opt` +
+  `&INFO_FORMAT=application/json` +
+  `&FEATURE_COUNT=1` +
+  `&X=50&Y=50&WIDTH=101&HEIGHT=101` +
+  `&SRS=EPSG:3857` +
+  `&BBOX=${this._getBbox(coordinate, viewResolution)}`;
 
     try {
       const response = await fetch(url);

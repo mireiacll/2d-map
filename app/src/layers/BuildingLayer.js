@@ -4,7 +4,9 @@ import GeoJSON from "ol/format/GeoJSON.js";
 import {Style,Fill,Stroke} from "ol/style.js";
 import { bbox } from 'ol/loadingstrategy.js';
 
-const GEOSERVER_URL = '/geoserver/korea_map/ows';
+import { GEOSERVER_BASE } from '../config.js';
+const GEOSERVER_URL = `${GEOSERVER_BASE}/korea_map/ows`;
+//const GEOSERVER_URL = '/geoserver/korea_map/ows';
 
 export class BuildingLayer{
     constructor(){

@@ -1,7 +1,9 @@
 import TileLayer from 'ol/layer/Tile.js';
 import TileWMS from 'ol/source/TileWMS.js';
 
-const GEOSERVER_URL = '/geoserver/korea_map/wms';
+import { GEOSERVER_BASE } from '../config.js';
+const GEOSERVER_URL = `${GEOSERVER_BASE}/korea_map/wms`;
+//const GEOSERVER_URL = '/geoserver/korea_map/wms';
 
 export class ContourLayer {
   constructor() {
