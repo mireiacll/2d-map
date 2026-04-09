@@ -23,13 +23,15 @@ const allLayers = [
 const mapManager = new MapManager('map', allLayers);
 
 const infoPanel = new InfoPanel('info-panel');
+const legend = new Legend('legend');
 
 new LayerPanel(
   'layer-panel',
   baseLayers,
   rasterLayers,
   buildingLayer,
-  contourLayer
+  contourLayer,
+  legend
 );
 
 new BuildingClick(
@@ -43,5 +45,3 @@ new ElevationClick(
   infoPanel,
   buildingLayer
 );
-
-new Legend('legend');

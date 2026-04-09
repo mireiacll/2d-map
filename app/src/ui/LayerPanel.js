@@ -1,10 +1,11 @@
 export class LayerPanel {
-  constructor(targetId, baseLayers, rasterLayers, buildingLayer, contourLayer) {
+  constructor(targetId, baseLayers, rasterLayers, buildingLayer, contourLayer, legend) {
     this.container = document.getElementById(targetId);
     this.baseLayers = baseLayers;
     this.rasterLayers = rasterLayers;
     this.buildingLayer = buildingLayer;
     this.contourLayer = contourLayer;
+    this.legend = legend;
     this._render();
   }
 
@@ -21,14 +22,14 @@ export class LayerPanel {
 
     // Vector layers
     this._addSectionLabel('Vector Layers');
-    this._addLayerRow('Buildings', true, this.buildingLayer.getLayer());
-    this._addLayerRow('Contours', false, this.contourLayer.getLayer(), true);
+    this._addLayerRow('Buildings', true, this.buildingLayer.getLayer(), false, 'buildings');
+    this._addLayerRow('Contours', false, this.contourLayer.getLayer(), true, 'contours');
 
     // Raster layers
     this._addSectionLabel('Raster Layers');
-    this._addLayerRow('DEM', false, this.rasterLayers.dem, true);
-    this._addLayerRow('Hillshade', false, this.rasterLayers.hillshade, true);
-    this._addLayerRow('Color Relief', false, this.rasterLayers.colorRelief, true);
+    this._addLayerRow('DEM', false, this.rasterLayers.dem, true, 'dem');
+    this._addLayerRow('Hillshade', false, this.rasterLayers.hillshade, true, null);
+    this._addLayerRow('Color Relief', false, this.rasterLayers.colorRelief, true, 'colorRelief');
   }
 
   _addSectionLabel(text) {
@@ -67,7 +68,7 @@ export class LayerPanel {
     this.container.appendChild(row);
   }
 
-  _addLayerRow(name, checked, layer, showOpacity = false) {
+  _addLayerRow(name, checked, layer, showOpacity = false, legendKey = null) {
     const row = document.createElement('div');
     row.className = 'layer-row';
 
@@ -80,6 +81,9 @@ export class LayerPanel {
 
     checkbox.addEventListener('change', () => {
       layer.setVisible(checkbox.checked);
+      if (legendKey && this.legend) {
+        this.legend.showSection(legendKey, checkbox.checked);
+      }
     });
 
     const text = document.createTextNode(name);
